@@ -1,16 +1,16 @@
-package com.grinyov.entity;
+package com.grinyov.library.entity;
 
 /**
  * Created by green on 11/27/15.
  */
-public class Genre implements java.io.Serializable {
+public class Publisher implements java.io.Serializable {
 
     private String name;
 
-    public Genre() {
+    public Publisher() {
     }
 
-    public Genre(String name) {
+    public Publisher(String name) {
         this.name = name;
     }
 

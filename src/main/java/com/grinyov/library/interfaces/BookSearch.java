@@ -1,8 +1,8 @@
-package com.grinyov.interfaces;
+package com.grinyov.library.interfaces;
 
-import com.grinyov.entity.Author;
-import com.grinyov.entity.Book;
-import com.grinyov.entity.Genre;
+import com.grinyov.library.entity.Author;
+import com.grinyov.library.entity.Book;
+import com.grinyov.library.entity.Genre;
 
 import java.lang.Character;import java.lang.String;import java.util.List;
 

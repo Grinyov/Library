@@ -1,4 +1,4 @@
-package com.grinyov.entity;
+package com.grinyov.library.entity;
 
 import java.lang.String; /**
  * Created by green on 11/27/15.

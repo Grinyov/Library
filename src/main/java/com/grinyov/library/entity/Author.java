@@ -1,4 +1,4 @@
-package com.grinyov.entity;
+package com.grinyov.library.entity;
 
 import java.util.Date;
 
