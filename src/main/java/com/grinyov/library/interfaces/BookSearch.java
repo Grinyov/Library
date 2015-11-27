@@ -8,6 +8,8 @@ import java.lang.Character;import java.lang.String;import java.util.List;
 
 /**
  * Created by green on 11/27/15.
+ *
+ * Интерфейс описывает различные вида поиска по каталогу
  */
 public interface BookSearch {
 
