@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--suppress SpringModelInspection -->
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
@@ -8,7 +9,7 @@
 
        <import resource="webflow.xml"/>
 
-       <mvc:resources location="/" mapping="/resources/**"/>
+     <mvc:resources location="/" mapping="/resources/*"/>
 
 
        <bean class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping">
@@ -19,8 +20,6 @@
        <bean class="org.springframework.faces.webflow.JsfFlowHandlerAdapter">
               <property name="flowExecutor" ref="flowExecutor"/>
        </bean>
-
-
 
 
        <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
