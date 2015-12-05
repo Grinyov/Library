@@ -28,5 +28,16 @@
               <property name="suffix" value=".xhtml"/>
        </bean>
 
+    <!-- прописываем бин для локализации приложения -->
+
+    <bean id="msg" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basename" value="/WEB-INF/locales/messages" />
+        <property name="defaultEncoding" value="UTF-8" />
+    </bean>
+
+    <!-- прописываем бин для выбора локализации по умолчанию, чтобы не полагатся на установки браузера  -->
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+        <property name="defaultLocale" value="ru" />
+    </bean>
 
 </beans>
