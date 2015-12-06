@@ -3,11 +3,14 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
        ">
 
        <import resource="webflow.xml"/>
+
+     <context:component-scan base-package="com.grinyov.library"/>
 
      <mvc:resources location="/" mapping="/resources/*"/>
 
@@ -28,16 +31,37 @@
               <property name="suffix" value=".xhtml"/>
        </bean>
 
-    <!-- прописываем бин для локализации приложения -->
+    <!-- бин для локализации приложения -->
 
     <bean id="msg" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
         <property name="basename" value="/WEB-INF/locales/messages" />
         <property name="defaultEncoding" value="UTF-8" />
     </bean>
 
-    <!-- прописываем бин для выбора локализации по умолчанию, чтобы не полагатся на установки браузера  -->
+    <!-- бин для выбора локализации по умолчанию, чтобы не полагатся на установки браузера  -->
     <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
         <property name="defaultLocale" value="ru" />
+    </bean>
+
+    <!-- бин для использования DataSource прописанного в GlassFish -->
+    <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName" value="jdbc/librarydb"/>
+    </bean>
+
+    <!-- бин для создания сессии Hibernate -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!-- первый вариант конфигурации данного бина, просто прописываем путь к конфигу hibernate -->
+        <!--<property name="configLocation" value="classpath:hibernate.cfg.xml" />-->
+
+        <!-- во втором варианте нужно прописать настройе=ки свойств   -->
+        <property name="packagesToScan" value="com.grinyov.library.entity" /> <!-- указывает путь к entity -->
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop> <!-- указывает диалект -->
+                <prop key="hibernate.show_sql">true</prop>                               <!-- показывает запросы, выводит отладочную инфу -->
+            </props>
+        </property>
     </bean>
 
 </beans>

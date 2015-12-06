@@ -1,64 +1,32 @@
 package com.grinyov.library.entity;
 
+import java.util.Arrays;
+
 /**
  * Created by green on 11/27/15.
  */
 public class Book{
 
-    private Author author;
-    private Genre genre;
-    private Publisher publisher;
+    private long id;
     private String name;
     private byte[] content;
-    private Integer pageCount;
+    private int pageCount;
     private String isbn;
-    private Integer publishYear;
+    private long genreId;
+    private long authorId;
+    private int publishYear;
+    private long publisherId;
     private byte[] image;
     private String descr;
     private Integer rating;
     private Long voteCount;
 
-    public Book(){
-
+    public long getId() {
+        return id;
     }
 
-    public Book(Author author, Genre genre, Publisher publisher, String name, byte[] content, Integer pageCount, String isbn, Integer publishYear, byte[] image, String descr, Integer rating, Long voteCount) {
-        this.author = author;
-        this.genre = genre;
-        this.publisher = publisher;
-        this.name = name;
-        this.content = content;
-        this.pageCount = pageCount;
-        this.isbn = isbn;
-        this.publishYear = publishYear;
-        this.image = image;
-        this.descr = descr;
-        this.rating = rating;
-        this.voteCount = voteCount;
-    }
-
-    public Author getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(Author author) {
-        this.author = author;
-    }
-
-    public Genre getGenre() {
-        return genre;
-    }
-
-    public void setGenre(Genre genre) {
-        this.genre = genre;
-    }
-
-    public Publisher getPublisher() {
-        return publisher;
-    }
-
-    public void setPublisher(Publisher publisher) {
-        this.publisher = publisher;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -77,11 +45,11 @@ public class Book{
         this.content = content;
     }
 
-    public Integer getPageCount() {
+    public int getPageCount() {
         return pageCount;
     }
 
-    public void setPageCount(Integer pageCount) {
+    public void setPageCount(int pageCount) {
         this.pageCount = pageCount;
     }
 
@@ -93,12 +61,36 @@ public class Book{
         this.isbn = isbn;
     }
 
-    public Integer getPublishYear() {
+    public long getGenreId() {
+        return genreId;
+    }
+
+    public void setGenreId(long genreId) {
+        this.genreId = genreId;
+    }
+
+    public long getAuthorId() {
+        return authorId;
+    }
+
+    public void setAuthorId(long authorId) {
+        this.authorId = authorId;
+    }
+
+    public int getPublishYear() {
         return publishYear;
     }
 
-    public void setPublishYear(Integer publishYear) {
+    public void setPublishYear(int publishYear) {
         this.publishYear = publishYear;
+    }
+
+    public long getPublisherId() {
+        return publisherId;
+    }
+
+    public void setPublisherId(long publisherId) {
+        this.publisherId = publisherId;
     }
 
     public byte[] getImage() {
@@ -132,4 +124,47 @@ public class Book{
     public void setVoteCount(Long voteCount) {
         this.voteCount = voteCount;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Book book = (Book) o;
+
+        if (authorId != book.authorId) return false;
+        if (genreId != book.genreId) return false;
+        if (id != book.id) return false;
+        if (pageCount != book.pageCount) return false;
+        if (publishYear != book.publishYear) return false;
+        if (publisherId != book.publisherId) return false;
+        if (!Arrays.equals(content, book.content)) return false;
+        if (descr != null ? !descr.equals(book.descr) : book.descr != null) return false;
+        if (!Arrays.equals(image, book.image)) return false;
+        if (isbn != null ? !isbn.equals(book.isbn) : book.isbn != null) return false;
+        if (name != null ? !name.equals(book.name) : book.name != null) return false;
+        if (rating != null ? !rating.equals(book.rating) : book.rating != null) return false;
+        if (voteCount != null ? !voteCount.equals(book.voteCount) : book.voteCount != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (content != null ? Arrays.hashCode(content) : 0);
+        result = 31 * result + pageCount;
+        result = 31 * result + (isbn != null ? isbn.hashCode() : 0);
+        result = 31 * result + (int) (genreId ^ (genreId >>> 32));
+        result = 31 * result + (int) (authorId ^ (authorId >>> 32));
+        result = 31 * result + publishYear;
+        result = 31 * result + (int) (publisherId ^ (publisherId >>> 32));
+        result = 31 * result + (image != null ? Arrays.hashCode(image) : 0);
+        result = 31 * result + (descr != null ? descr.hashCode() : 0);
+        result = 31 * result + (rating != null ? rating.hashCode() : 0);
+        result = 31 * result + (voteCount != null ? voteCount.hashCode() : 0);
+        return result;
+    }
+
 }
