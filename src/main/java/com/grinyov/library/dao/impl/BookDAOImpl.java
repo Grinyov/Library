@@ -22,7 +22,6 @@ public class BookDAOImpl implements BookDAO {
 
 
     @Transactional
-    @Override
     public List<Book> getBooks() {
 
         books = (List<Book>) sessionFactory.getCurrentSession()
@@ -32,22 +31,18 @@ public class BookDAOImpl implements BookDAO {
         return books;
     }
 
-    @Override
     public List<Book> getBooks(Author author) {
         return null;
     }
 
-    @Override
     public List<Book> getBooks(String bookName) {
         return null;
     }
 
-    @Override
     public List<Book> getBooks(Genre genre) {
         return null;
     }
 
-    @Override
     public List<Book> getBooks(Character letter) {
         return null;
     }
