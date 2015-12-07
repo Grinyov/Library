@@ -6,6 +6,7 @@
   <session-factory>
     <!-- настройка диалекта -->
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/librarydb?zeroDateTimeBehavior=convertToNull</property>
     <!-- настройка для отображения отладочной информации -->
