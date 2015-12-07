@@ -1,19 +1,19 @@
-package com.grinyov.library.entity;
+package com.grinyov.library.entities;
 
 import java.io.Serializable;
 
 /**
  * Created by green on 11/27/15.
  */
-public class Publisher implements Serializable {
+public class Genre implements Serializable {
 
     private String name;
     private long id;
 
-    public Publisher() {
+    public Genre() {
     }
 
-    public Publisher(String name) {
+    public Genre(String name) {
         this.name = name;
     }
 
@@ -38,10 +38,10 @@ public class Publisher implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Publisher publisher = (Publisher) o;
+        Genre genre = (Genre) o;
 
-        if (id != publisher.id) return false;
-        if (name != null ? !name.equals(publisher.name) : publisher.name != null) return false;
+        if (id != genre.id) return false;
+        if (name != null ? !name.equals(genre.name) : genre.name != null) return false;
 
         return true;
     }

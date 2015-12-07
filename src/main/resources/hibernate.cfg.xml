@@ -15,11 +15,11 @@
     <property name="hibernate.connection.datasource">jdbc/librarydb</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">weber123</property>
-      <mapping resource="com/grinyov/library/entity/Author.hbm.xml"/>
-      <mapping resource="com/grinyov/library/entity/Book.hbm.xml"/>
-      <mapping resource="com/grinyov/library/entity/Genre.hbm.xml"/>
-      <mapping resource="com/grinyov/library/entity/Publisher.hbm.xml"/>
-      <mapping resource="com/grinyov/library/entity/Vote.hbm.xml"/>
+      <mapping resource="com/grinyov/library/entities/Author.hbm.xml"/>
+      <mapping resource="com/grinyov/library/entities/Book.hbm.xml"/>
+      <mapping resource="com/grinyov/library/entities/Genre.hbm.xml"/>
+      <mapping resource="com/grinyov/library/entities/Publisher.hbm.xml"/>
+      <mapping resource="com/grinyov/library/entities/Vote.hbm.xml"/>
       <!-- DB schema will be updated if needed -->
     <!-- <property name="hbm2ddl.auto">update</property> -->
   </session-factory>

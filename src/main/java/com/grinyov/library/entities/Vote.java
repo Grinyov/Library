@@ -1,4 +1,4 @@
-package com.grinyov.library.entity;
+package com.grinyov.library.entities;
 
 /**
  * Created by green on 06.12.2015.

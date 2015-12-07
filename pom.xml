@@ -6,7 +6,8 @@
 
     <groupId>com.grinyov</groupId>
     <artifactId>Library</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+    <version>0.0.1</version>
 
     <properties>
         <webflow-version>2.4.1.RELEASE</webflow-version>

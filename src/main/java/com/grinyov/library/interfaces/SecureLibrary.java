@@ -1,6 +1,6 @@
 package com.grinyov.library.interfaces;
 
-import com.grinyov.library.entity.User;
+import com.grinyov.library.entities.User;
 
 /**
  * Created by green on 11/27/15.

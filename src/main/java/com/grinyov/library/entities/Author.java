@@ -1,4 +1,4 @@
-package com.grinyov.library.entity;
+package com.grinyov.library.entities;
 
 import java.io.Serializable;
 import java.util.Date;

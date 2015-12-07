@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--suppress ALL -->
 <flow xmlns="http://www.springframework.org/schema/webflow"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
-<!-- если имя flow не совпадает с именем jsf страницы, то нужно во view-state прописать имя в параметре view -->
+
       <view-state id="main">
+
             <on-render>
-                  <evaluate expression="testBean.test()"/>
+                  <evaluate expression="bookDAOImpl.books"/>
             </on-render>
 
       </view-state>
+
 </flow>
