@@ -1,31 +1,29 @@
 package com.grinyov.library.dao.impl;
 
-import com.grinyov.library.dao.interfaces.LibraryDAO;
-
+import com.grinyov.library.dao.interfaces.BookDAO;
 import com.grinyov.library.entities.Author;
 import com.grinyov.library.entities.Book;
 import com.grinyov.library.entities.Genre;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Order;
-import org.hibernate.criterion.ProjectionList;
-import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.*;
 import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 @Component
-public class LibraryDAOImpl implements LibraryDAO {
+public class BookDAOImpl implements BookDAO {
 
     @Autowired
     private SessionFactory sessionFactory;
 
     private ProjectionList bookProjection;
 
-    public LibraryDAOImpl() {
+    // в проекции указывем какие поля мы хотим отображать
+    public BookDAOImpl() {
         bookProjection = Projections.projectionList();
         bookProjection.add(Projections.property("id"), "id");
         bookProjection.add(Projections.property("name"), "name");
@@ -44,31 +42,44 @@ public class LibraryDAOImpl implements LibraryDAO {
 
     @Transactional
     public List<Book> getBooks() {
-        DetachedCriteria bookListCriteria = DetachedCriteria.forClass(Book.class, "book"); // создаем аллиас book
-        createAliases(bookListCriteria);
-
-        List<Book> books = createBookList(bookListCriteria);
-
+        List<Book> books = createBookList(createBookCriteria());
         return books;
     }
-
-
+    // создаем фильтрацию с помощью аллиасов и restriction, то есть выбираем книги по автору,
+    // MatchMode.ANYWHERE - указывает что в любом месте может встречатся строка  и записываем их в лист
+    // выборка по автору
+    @Transactional
     public List<Book> getBooks(Author author) {
-        return null;
+        List<Book> books = createBookList(createBookCriteria().add(Restrictions.ilike("author.fio", author.getFio(), MatchMode.ANYWHERE)));
+        return books;
     }
-
+    // выборка по названию
+    @Transactional
     public List<Book> getBooks(String bookName) {
-        return null;
+        List<Book> books = createBookList(createBookCriteria().add(Restrictions.ilike("book.name", bookName, MatchMode.ANYWHERE)));
+        return books;
     }
-
+    // выборка по жанру
+    @Transactional
     public List<Book> getBooks(Genre genre) {
-        return null;
+        List<Book> books = createBookList(createBookCriteria().add(Restrictions.ilike("author.fio", genre.getName(), MatchMode.ANYWHERE)));
+        return books;
     }
-
+    // выборка по букве вхождения
+    @Transactional
     public List<Book> getBooks(Character letter) {
-        return null;
+        List<Book> books = createBookList(createBookCriteria().add(Restrictions.ilike("book.name", letter.toString(), MatchMode.START)));
+        return books;
+
     }
 
+    private DetachedCriteria createBookCriteria(){
+        DetachedCriteria bookListCriteria = DetachedCriteria.forClass(Book.class, "book"); // create link
+        createAliases(bookListCriteria);
+        return bookListCriteria;
+    }
+
+    // create allias
     private void createAliases(DetachedCriteria criteria) {
         criteria.createAlias("book.author", "author");
         criteria.createAlias("book.genre", "genre");
@@ -78,9 +89,8 @@ public class LibraryDAOImpl implements LibraryDAO {
 
     private List<Book> createBookList(DetachedCriteria bookListCriteria) {
         Criteria criteria = bookListCriteria.getExecutableCriteria(sessionFactory.getCurrentSession());
-        criteria.addOrder(Order.asc("b.name")).setProjection(bookProjection).setResultTransformer(Transformers.aliasToBean(Book.class));
+        criteria.addOrder(Order.asc("book.name")).setProjection(bookProjection).setResultTransformer(Transformers.aliasToBean(Book.class));
         return criteria.list();
     }
-
 
 }

@@ -8,7 +8,7 @@ import com.grinyov.library.entities.Genre;
 import java.util.List;
 
 
-public interface LibraryDAO {
+public interface BookDAO {
 
     List<Book> getBooks();
     List<Book> getBooks(Author author);

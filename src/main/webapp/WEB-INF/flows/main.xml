@@ -7,7 +7,7 @@
       <view-state id="main">
 
             <on-render>
-                  <evaluate expression="libraryDAOImpl.books"/>
+                  <evaluate expression="bookDAOImpl.books"/>
             </on-render>
 
 
