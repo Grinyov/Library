@@ -68,7 +68,7 @@ public class BookDAOImpl implements BookDAO {
     public List<Book> getBooks(Character letter) {
         return null;
     }
-
+giit
     private void createAliases(DetachedCriteria criteria) {
         criteria.createAlias("book.author", "author");
         criteria.createAlias("book.genre", "genre");
