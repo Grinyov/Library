@@ -1,6 +1,7 @@
 package com.grinyov.library.dao.impl;
 
-import com.grinyov.library.dao.interfaces.BookDAO;
+import com.grinyov.library.dao.interfaces.LibraryDAO;
+
 import com.grinyov.library.entities.Author;
 import com.grinyov.library.entities.Book;
 import com.grinyov.library.entities.Genre;
@@ -18,14 +19,14 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Component
-public class BookDAOImpl implements BookDAO {
+public class LibraryDAOImpl implements LibraryDAO {
 
     @Autowired
     private SessionFactory sessionFactory;
 
     private ProjectionList bookProjection;
 
-    public LibraryDaoImpl() {
+    public LibraryDAOImpl() {
         bookProjection = Projections.projectionList();
         bookProjection.add(Projections.property("id"), "id");
         bookProjection.add(Projections.property("name"), "name");
@@ -68,7 +69,7 @@ public class BookDAOImpl implements BookDAO {
     public List<Book> getBooks(Character letter) {
         return null;
     }
-giit
+
     private void createAliases(DetachedCriteria criteria) {
         criteria.createAlias("book.author", "author");
         criteria.createAlias("book.genre", "genre");
