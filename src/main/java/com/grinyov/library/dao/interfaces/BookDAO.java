@@ -8,6 +8,12 @@ import com.grinyov.library.entities.Genre;
 import java.util.List;
 
 
+/**
+ * Created by green on 5.12.2015.
+ *
+ * Интерфейс для работы с сущностью Book
+ */
+
 public interface BookDAO {
 
     List<Book> getBooks();

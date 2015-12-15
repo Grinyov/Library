@@ -21,7 +21,7 @@
       <mapping resource="com/grinyov/library/entities/Genre.hbm.xml"/>
       <mapping resource="com/grinyov/library/entities/Publisher.hbm.xml"/>
       <mapping resource="com/grinyov/library/entities/Vote.hbm.xml"/>
-      <!-- DB schema will be updated if needed -->
+      <!-- DB schema will be updated if needed Указывает нужно ли создать(параметр value="create"), ничего не делать(value="never") или обновить(value="update") схему базы данных-->
     <!-- <property name="hbm2ddl.auto">update</property> -->
   </session-factory>
 </hibernate-configuration>
